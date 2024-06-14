@@ -278,7 +278,7 @@ def create_summary_pdf_with_gpt(df, file_name):
         if os.path.exists(figure_file):
             os.remove(figure_file)
 
-def create_pdf(content):
+def create_pdf(content, file_path):
     # Convert Markdown to HTML with the desired styling
     html_content = markdown.markdown(content)
     styled_html = f"""
@@ -316,12 +316,10 @@ def create_pdf(content):
     }
 
     try:
-        # Generate the PDF and return it as bytes
-        pdf_bytes = pdfkit.from_string(styled_html, False, options=pdf_options)
-        return pdf_bytes
+        # Generate the PDF and save it to the specified file path
+        pdfkit.from_string(styled_html, file_path, options=pdf_options)
     except Exception as e:
         print(f"Error creating PDF: {e}")
-        return None
 
 def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
     with tempfile.TemporaryDirectory() as temp_dir:
@@ -331,7 +329,7 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
         for extracted_info, response_content in extracted_infos:
             sanitized_name = sanitize_filename(extracted_info)
             pdf_file_path = os.path.join(temp_dir, f"{sanitized_name}.pdf")
-            create_pdf(response_content, pdf_file_path)  # Use the updated create_pdf function
+            create_pdf(response_content, pdf_file_path)  # Pass the file path as the second argument
 
         # Write files to the ZIP buffer
         with zipfile.ZipFile(zip_buffer, 'w') as zipf:
