@@ -324,28 +324,34 @@ def create_pdf(content):
         return None
 
 def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
-    zip_buffer = BytesIO()  # Use a BytesIO buffer to create the zip in memory
-    
-    with zipfile.ZipFile(zip_buffer, 'w') as zipf:
-        # Add generated PDFs to the ZIP
+    with tempfile.TemporaryDirectory() as temp_dir:
+        zip_buffer = BytesIO()  # Use a BytesIO buffer to create the zip in memory
+        
+        # Create and save PDF files in the temporary directory
         for extracted_info, response_content in extracted_infos:
             sanitized_name = sanitize_filename(extracted_info)
-            pdf_bytes = create_pdf(response_content)  # Use the updated create_pdf function
-            if pdf_bytes:
-                zipf.writestr(f"{sanitized_name}.pdf", pdf_bytes)
-                print(f"Added {sanitized_name}.pdf to zip")
+            pdf_file_path = os.path.join(temp_dir, f"{sanitized_name}.pdf")
+            create_pdf(response_content, pdf_file_path)  # Use the updated create_pdf function
 
-        # Add the DataFrame CSV file
-        if os.path.exists(data_frame_file):
-            zipf.write(data_frame_file)
-            print(f"Added {data_frame_file} to zip")
-        
-        # Add the summary PDF file
-        if os.path.exists(summary_pdf_file):
-            zipf.write(summary_pdf_file)
-            print(f"Added {summary_pdf_file} to zip")
+        # Write files to the ZIP buffer
+        with zipfile.ZipFile(zip_buffer, 'w') as zipf:
+            # Add generated PDFs to the ZIP
+            for pdf_file in os.listdir(temp_dir):
+                full_path = os.path.join(temp_dir, pdf_file)
+                zipf.write(full_path, os.path.basename(full_path))
+                print(f"Added {pdf_file} to zip")
 
-    zip_buffer.seek(0)  # Rewind the buffer to the beginning
+            # Add the DataFrame CSV file
+            if os.path.exists(data_frame_file):
+                zipf.write(data_frame_file)
+                print(f"Added {data_frame_file} to zip")
+            
+            # Add the summary PDF file
+            if os.path.exists(summary_pdf_file):
+                zipf.write(summary_pdf_file)
+                print(f"Added {summary_pdf_file} to zip")
+
+        zip_buffer.seek(0)  # Rewind the buffer to the beginning
     return zip_buffer.getvalue(), "Applications.zip"
 
 
