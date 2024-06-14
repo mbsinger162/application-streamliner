@@ -1,0 +1,180 @@
+    1.  Princeton University (NJ)
+    2.  Harvard University (MA)
+    3.  Yale University (CT)
+    4.  Columbia University (NY)
+    5.  Stanford University (CA)
+    6.  University of Chicago
+    7.  Massachusetts Institute of Technology
+    8.  Duke University (NC)
+    9.  University of Pennsylvania
+    10. California Institute of Technology
+    11. Dartmouth College (NH)
+    12. Johns Hopkins University (MD)
+    13. Northwestern University (IL)
+    14. Washington University in St. Louis
+    15. Cornell University (NY)
+    16. Brown University (RI)
+    17. University of Notre Dame (IN)
+    18. Vanderbilt University (TN)
+    19. Rice University (TX)
+    20. University of California–Berkeley
+    21. Emory University (GA)
+    22. Georgetown University (DC)
+    23. University of California–Los Angeles
+    24. University of Virginia
+    25. Carnegie Mellon University (PA)
+    26. University of Southern California
+    27. Tufts University (MA)
+    28. Wake Forest University (NC)
+    29. University of Michigan–Ann Arbor
+    30. University of North Carolina–Chapel Hill
+    31. Boston College
+    32. New York University
+    33. College of William and Mary (VA)
+    34. University of Rochester (NY)
+    35. Brandeis University (MA)
+    36. Georgia Institute of Technology
+    37. University of California–San Diego
+    38. Case Western Reserve University (OH)
+    39. University of California–Davis
+    40. Lehigh University (PA)
+    41. University of California–Santa Barbara
+    42. Boston University
+    43. Northeastern University (MA)
+    44. Rensselaer Polytechnic Institute (NY)
+    45. University of California–Irvine
+    46. University of Illinois–Urbana-Champaign
+    47. University of Wisconsin–Madison
+    48. Pennsylvania State University–University Park
+    49. University of Florida
+    50. University of Miami (FL)
+    51. University of Washington
+    52. Yeshiva University (NY)
+    53. University of Texas–Austin
+    54. George Washington University (DC)
+    55. Ohio State University–Columbus
+    56. Pepperdine University (CA)
+    57. Tulane University (LA)
+    58. Fordham University (NY)
+    59. Southern Methodist University (TX)
+    60. Syracuse University (NY)
+    61. University of Connecticut
+    62. Brigham Young University–Provo (UT)
+    63. Clemson University (SC)
+    64. Purdue University–West Lafayette (IN)
+    65. University of Georgia
+    66. University of Maryland–College Park
+    67. University of Pittsburgh
+    68. Texas A&M University–College Station
+    69. Worcester Polytechnic Institute (MA)
+    70. Rutgers, State University of New Jersey–New Brunswick
+    71. American University (DC)
+    72. Baylor University (TX)
+    73. University of Iowa
+    74. University of Minnesota–Twin Cities
+    75. Virginia Tech
+    76. Clark University (MA)
+    77. Indiana University–Bloomington
+    78. Marquette University (WI)
+    79. Miami University–Oxford (OH)
+    80. Stevens Institute of Technology (NJ)
+    81. SUNY College of Environmental Science and Forestry
+    82. Texas Christian University
+    83. University of Delaware
+    84. University of Massachusetts–Amherst
+    85. Michigan State University
+    86. University of California–Santa Cruz
+    87. University of Vermont
+    88. Binghamton University–SUNY
+    89. Colorado School of Mines
+    90. Stony Brook University–SUNY
+    91. University of Alabama
+    92. University of Colorado–Boulder
+    93. University of Denver
+    94. University of Tulsa (OK)
+    95. Drexel University (PA)
+    96. Florida State University
+    97. North Carolina State University–Raleigh
+    98. University of San Diego
+    99. Saint Louis University
+    100.    University of Missouri
+    101.    University of Nebraska–Lincoln
+    102.    University of New Hampshire
+    103.    Auburn University (AL)
+    104.    University at Buffalo–SUNY
+    105.    University of Dayton (OH)
+    106.    Iowa State University
+    107.    Loyola University Chicago
+    108.    University of Kansas
+    109.    University of Oklahoma
+    110.    University of Oregon
+    111.    University of San Francisco
+    112.    University of Tennessee
+    113.    University of California–Riverside
+    114.    University of South Carolina
+    115.    University of St. Thomas (MN)
+    116.    Catholic University of America (DC)
+    117.    Duquesne University (PA)
+    118.    Illinois Institute of Technology
+    119.    Michigan Technological University
+    120.    University of the Pacific (CA)
+    121.    Clarkson University (NY)
+    122.    Colorado State University
+    123.    DePaul University (IL)
+    124.    Temple University (PA)
+    125.    University of Arizona
+    126.    Rutgers, The State University of New Jersey–Newark
+    127.    Seton Hall University (NJ)
+    128.    University at Albany–SUNY
+    129.    Arizona State University–Tempe
+    130.    Louisiana State University–Baton Rouge
+    131.    Ohio University
+    132.    University of Cincinnati
+    133.    University of Kentucky
+    134.    University of Utah
+    135.    Hofstra University (NY)
+    136.    New School (NY)
+    137.    University of Arkansas
+    138.    George Mason University (VA)
+    139.    Missouri University of Science & Technology
+    140.    Oregon State University
+    141.    Washington State University
+    142.    Illinois State University
+    143.    Kansas State University
+    144.    Saint John Fisher College (NY)
+    145.    Howard University (DC)
+    146.    Oklahoma State University
+    147.    St. John’s University (NY)
+    148.    University of Texas–Dallas
+    149.    Adelphi University (NY)
+    150.    New Jersey Institute of Technology
+    151.    San Diego State University
+    152.    University of Alabama–Birmingham
+    153.    University of Illinois–Chicago
+    154.    University of Maryland–Baltimore County
+    155.    University of Mississippi
+    156.    Maryville University of Saint Louis
+    157.    Mississippi State University
+    158.    Texas Tech University
+    159.    University of Massachusetts–Lowell
+    160.    Virginia Commonwealth University
+    161.    Biola University (CA)
+    162.    University of Louisville (KY)
+    163.    University of Rhode Island
+    164.    University of South Florida
+    165.    University of Wyoming
+    166.    University of Idaho
+    167.    University of La Verne (CA)
+    168.    Andrews University (MI)
+    169.    University of Hawaii–Manoa
+    170.    University of North Dakota
+    171.    University of South Dakota
+    172.    West Virginia University
+    173.    Azusa Pacific University (CA)
+    174.    Ball State University (IN)
+    175.    Bowling Green State University (OH)
+    176.    Florida Institute of Technology
+    177.    Pace University (NY)
+    178.    University of Central Florida
+    179.    University of Maine
+    180.    Western Michigan University

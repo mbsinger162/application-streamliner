@@ -1,0 +1,159 @@
+    1.  Harvard University
+    2.  Johns Hopkins University
+    3.  University of Pennsylvania (Perelman)
+    4.  Columbia University
+    5.  Duke University
+    6.  Stanford University
+    7.  University of California–San Francisco
+    8.  Vanderbilt University
+    9.  Washington University in St. Louis
+    10. Cornell University (Weill)
+    11. New York University (Grossman)
+    12. Yale University
+    13. Mayo Clinic School of Medicine (Alix)
+    14. Northwestern University (Feinberg)
+    15. University of Michigan–Ann Arbor
+    16. University of Pittsburgh
+    17. University of Washington
+    18. Icahn School of Medicine at Mount Sinai
+    19. University of California–Los Angeles (Geffen)
+    20. University of Chicago (Pritzker)
+    21. University of California–San Diego
+    22. Baylor College of Medicine
+    23. Emory University
+    24. University of Texas Southwestern Medical Center
+    25. Case Western Reserve University
+    26. University of Colorado
+    27. University of North Carolina–Chapel Hill
+    28. Ohio State University
+    29. University of Southern California (Keck)
+    30. Oregon Health and Science University
+    31. University of Virginia
+    32. Boston University (Chobanian & Avedisian)
+    33. University of Maryland
+    34. University of Rochester
+    35. Brown University (Alpert)
+    36. University of Alabama–Birmingham
+    37. University of Cincinnati
+    38. University of Florida
+    39. University of Minnesota
+    40. University of Utah
+    41. University of Wisconsin–Madison
+    42. Albert Einstein College of Medicine
+    43. Indiana University–Indianapolis
+    44. University of California–Irvine
+    45. University of Iowa (Carver)
+    46. University of Massachusetts Chan Medical School
+    47. University of Miami (Miller)
+    48. Dartmouth College (Geisel)
+    49. Wake Forest University
+    50. University of California–Davis
+    51. University of South Florida (Morsani)
+    52. University of Texas Health Science Center–San Antonio
+    53. Georgetown University
+    54. Tufts University
+    55. University of Connecticut
+    56. Medical University of South Carolina
+    57. University of Texas Health Science Center–Houston (McGovern)
+    58. George Washington University
+    59. Stony Brook University–SUNY (Renaissance)
+    60. Thomas Jefferson University (Kimmel)
+    61. University of Illinois
+    62. University of Nebraska Medical Center
+    63. University of Arizona–Tucson
+    64. Texas A&M University
+    65. University of Kentucky
+    66. University of Vermont (Larner)
+    67. Virginia Commonwealth University
+    68. Hofstra University/Northwell Health (Zucker)
+    69. Rush University
+    70. Rutgers Robert Wood Johnson Medical School–New Brunswick (Johnson)
+    71. Rutgers New Jersey Medical School–Newark
+    72. Temple University (Katz)
+    73. University of Tennessee Health Science Center
+    74. Wayne State University
+    75. University of Kansas Medical Center
+    76. University at Buffalo–SUNY (Jacobs)
+    77. University of Arkansas for Medical Sciences
+    78. University of Oklahoma
+    79. Augusta University
+    80. Hackensack Meridian School of Medicine
+    81. University of Hawaii–Manoa (Burns)
+    82. University of Louisville
+    83. University of New Mexico
+    84. Virginia Tech Carilion School of Medicine
+    85. Saint Louis University
+    86. University of Missouri
+    87. West Virginia University
+    88. Drexel University
+    89. Michigan State University College of Human Medicine (Broad)
+    90. SUNY Upstate Medical University
+    91. University of Missouri–Kansas City
+    92. New York University–Long Island
+    93. Geisinger Commonwealth School of Medicine
+    94. University of Nevada–Reno
+    95. University of South Carolina
+    96. Texas Tech University Health Sciences Center
+    97. University of California–Riverside
+    98. Florida State University
+    99. University of Central Florida
+    100.    Eastern Virginia Medical School
+    101.    New York Medical College
+    102.    University of Toledo
+    103.    East Carolina University (Brody)
+    104.    East Tennessee State University (Quillen)
+    105.    Howard University
+    106.    Florida Atlantic University (Schmidt)
+    107.    Florida International University (Wertheim)
+    108.    Marshall University (Edwards)
+    109.    Northeast Ohio Medical University
+    110.    Cooper Medical School of Rowan University
+    111.    Michigan State University College of Osteopathic Medicine
+    112.    Wright State University (Boonshoft)
+    113.    Oklahoma State University
+    114.    Ohio University (Heritage)
+    115.    Rowan University School of Osteopathic Medicine
+    116.    University of North Texas Health Science Center
+    117.    Western University of Health Sciences
+    118.    Edward Via College of Osteopathic Medicine
+    119.    Lake Erie College of Osteopathic Medicine
+    120.    Lincoln Memorial University (DeBusk)
+    121.    Marian University College of Osteopathic Medicine
+    122.    Nova Southeastern University Patel College of Allopathic Medicine
+    123.    Nova Southeastern University Patel College of Osteopathic Medicine (Patel)
+    124.    Quinnipiac University
+    125.    Touro University California
+    126.    University of New England
+    127.    University of Pikeville
+    128.    University of South Carolina–Greenville
+    129.    West Virginia School of Osteopathic Medicine
+    130.    William Carey University College of Osteopathic Medicine
+    131.    Alabama College of Osteopathic Medicine
+    132.    Albany Medical College
+    133.    Arkansas College of Osteopathic Medicine
+    134.    A.T. Still University of Health Sciences–Kirksville (Kirksville)
+    135.    A.T. Still University of Health Sciences–Mesa
+    136.    Burrell College of Osteopathic Medicine
+    137.    California Health Sciences University College of Osteopathic Medicine
+    138.    California Northstate University
+    139.    California University of Science and Medicine
+    140.    Campbell University (Wallace)
+    141.    Carle Illinois College of Medicine
+    142.    Central Michigan University
+    143.    Creighton University
+    144.    CUNY School of Medicine
+    145.    Des Moines University
+    146.    Idaho College of Osteopathic Medicine
+    147.    Kaiser Permanente (Tyson)
+    148.    Kansas City University of Medicine and Biosciences
+    149.    Kansas Health Science Center
+    150.    Liberty University College of Osteopathic Medicine
+    151.    Loma Linda University
+    152.    Louisiana State University Health Sciences Center–New Orleans
+    153.    Louisiana State University Health Sciences Center–Shreveport
+    154.    Loyola University Chicago (Stritch)
+    155.    Medical College of Wisconsin
+    156.    Meharry Medical College
+    157.    Mercer University
+    158.    Midwestern University
+    159.    Morehouse School of Medicine
