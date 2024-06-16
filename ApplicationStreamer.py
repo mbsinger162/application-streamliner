@@ -319,7 +319,9 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
         
         # Add the summary PDF file
         if os.path.exists(summary_pdf_file):
-            zipf.write(summary_pdf_file, "summary_statistics.pdf")
+            with open(summary_pdf_file, 'rb') as file:
+                summary_pdf_data = file.read()
+            zipf.writestr("summary_statistics.pdf", summary_pdf_data)
             print(f"Added summary_statistics.pdf to zip")
 
     zip_buffer.seek(0)  # Rewind the buffer to the beginning
