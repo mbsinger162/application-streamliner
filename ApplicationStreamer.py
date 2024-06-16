@@ -258,9 +258,8 @@ def create_summary_pdf_with_gpt(df, file_name):
     <body>
         <h1>Summary Statistics Generated</h1>
         {html_content}
-        # <div class="figure">
-        #     {figures_html}
-        # </div>
+        <div class="figure">
+        </div>
     </body>
     </html>
     """
