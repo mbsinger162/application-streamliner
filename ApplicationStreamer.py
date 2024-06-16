@@ -286,25 +286,25 @@ def create_pdf(content, buffer):
     # Escape any special characters in the content
     escaped_content = html.escape(content)
 
-    # Create an HTML template for the PDF content
-    html_template = """
+    # Create an HTML template for the PDF content using an f-string
+    html_template = f"""
     <!DOCTYPE html>
     <html>
     <head>
         <meta charset="UTF-8">
         <title>Generated PDF</title>
         <style>
-            body {
+            body {{
                 font-family: Arial, sans-serif;
                 font-size: 12px;
-            }
+            }}
         </style>
     </head>
     <body>
-        <pre>{}</pre>
+        <pre>{escaped_content}</pre>
     </body>
     </html>
-    """.format(escaped_content)
+    """
 
     try:
         # Convert the HTML content to a base64-encoded data URL
