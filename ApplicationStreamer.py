@@ -336,25 +336,30 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
             # Generate the PDF from the response content
             create_pdf(response_content, pdf_filename)
             
-            # Add the PDF file to the ZIP
-            zipf.write(pdf_filename)
-            print(f"Added {pdf_filename} to zip")
-
-            # Clean up the generated PDF file
+            # Check if the PDF file was created successfully
             if os.path.exists(pdf_filename):
+                zipf.write(pdf_filename)
+                print(f"Added {pdf_filename} to zip")
+                # Clean up the generated PDF file
                 os.remove(pdf_filename)
+            else:
+                print(f"Failed to create {pdf_filename}. File does not exist.")
 
         # Add the DataFrame CSV file
         if os.path.exists(data_frame_file):
             zipf.write(data_frame_file)
             print(f"Added {data_frame_file} to zip")
-        
+        else:
+            print(f"Data frame file {data_frame_file} does not exist.")
+
         # Add the summary PDF file
         if os.path.exists(summary_pdf_file):
             with open(summary_pdf_file, 'rb') as file:
                 summary_pdf_data = file.read()
             zipf.writestr("summary_statistics.pdf", summary_pdf_data)
             print(f"Added summary_statistics.pdf to zip")
+        else:
+            print(f"Summary PDF file {summary_pdf_file} does not exist.")
 
     zip_buffer.seek(0)  # Rewind the buffer to the beginning
     return zip_buffer.getvalue(), "Applications.zip"
