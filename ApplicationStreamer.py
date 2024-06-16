@@ -385,19 +385,14 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
             
             # Check if the PDF file was created successfully
             if os.path.exists(pdf_filename):
-                # st.write(f"Adding {pdf_filename} to zip")  # Log file addition
                 zipf.write(pdf_filename)
-                # st.write(f"Added {pdf_filename} to zip")
-                
-                # Clean up the generated PDF file
                 os.remove(pdf_filename)
             else:
                 st.write(f"Failed to create {pdf_filename}. File does not exist.")
         
-        # Add the DataFrame CSV file
+        # Add the DataFrame Excel file (Updated)
         if os.path.exists(data_frame_file):
             zipf.write(data_frame_file)
-            # st.write(f"Added {data_frame_file} to zip")
         else:
             st.write(f"Data frame file {data_frame_file} does not exist.")
         
@@ -406,7 +401,6 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
             with open(summary_pdf_file, 'rb') as file:
                 summary_pdf_data = file.read()
             zipf.writestr("summary_statistics.pdf", summary_pdf_data)
-            # st.write(f"Added summary_statistics.pdf to zip")
         else:
             st.write(f"Summary PDF file {summary_pdf_file} does not exist.")
 
@@ -496,8 +490,8 @@ if st.button("Process Applications"):
             df = pd.DataFrame(data_list, columns=["Name"] + simplified_fields)
 
             # Save the DataFrame to a CSV file
-            data_frame_file = "applicant_data.csv"
-            df.to_csv(data_frame_file, index=False)
+            data_frame_file = "applicant_data.xlsx"
+            df.to_excel(data_frame_file, index=False, engine='openpyxl')
 
             st.write("DataFrame creation complete.")
 
