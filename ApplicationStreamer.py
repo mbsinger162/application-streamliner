@@ -318,11 +318,12 @@ def create_pdf(content, filename):
         'margin-left': '10mm'
     }
 
-    # Generate PDF file from the HTML template
     try:
+        # Generate PDF file from the HTML template
         pdfkit.from_string(html_template, filename, options=pdf_options)
+        st.write(f"PDF created successfully: {filename}")  # Log PDF creation success
     except Exception as e:
-        print(f"Error creating PDF: {e}")
+        st.error(f"Error creating PDF {filename}: {e}")
 
 def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
     zip_buffer = BytesIO()  # Use a BytesIO buffer to create the zip in memory
@@ -338,28 +339,30 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
             
             # Check if the PDF file was created successfully
             if os.path.exists(pdf_filename):
+                st.write(f"Adding {pdf_filename} to zip")  # Log file addition
                 zipf.write(pdf_filename)
-                print(f"Added {pdf_filename} to zip")
+                st.write(f"Added {pdf_filename} to zip")
+                
                 # Clean up the generated PDF file
                 os.remove(pdf_filename)
             else:
-                print(f"Failed to create {pdf_filename}. File does not exist.")
-
+                st.write(f"Failed to create {pdf_filename}. File does not exist.")
+        
         # Add the DataFrame CSV file
         if os.path.exists(data_frame_file):
             zipf.write(data_frame_file)
-            print(f"Added {data_frame_file} to zip")
+            st.write(f"Added {data_frame_file} to zip")
         else:
-            print(f"Data frame file {data_frame_file} does not exist.")
-
+            st.write(f"Data frame file {data_frame_file} does not exist.")
+        
         # Add the summary PDF file
         if os.path.exists(summary_pdf_file):
             with open(summary_pdf_file, 'rb') as file:
                 summary_pdf_data = file.read()
             zipf.writestr("summary_statistics.pdf", summary_pdf_data)
-            print(f"Added summary_statistics.pdf to zip")
+            st.write(f"Added summary_statistics.pdf to zip")
         else:
-            print(f"Summary PDF file {summary_pdf_file} does not exist.")
+            st.write(f"Summary PDF file {summary_pdf_file} does not exist.")
 
     zip_buffer.seek(0)  # Rewind the buffer to the beginning
     return zip_buffer.getvalue(), "Applications.zip"
