@@ -279,47 +279,22 @@ def create_summary_pdf_with_gpt(df, file_name):
             os.remove(figure_file)
 
 def create_pdf(content, buffer):
-    # Convert Markdown to HTML with the desired styling
-    html_content = markdown.markdown(content)
-    styled_html = f"""
-    <html>
-    <head>
-        <style>
-            body {{
-                font-size: 14px;
-                font-family: 'DejaVu Sans', sans-serif;
-            }}
-            h1 {{
-                font-size: 24px;
-            }}
-            h2 {{
-                font-size: 20px;
-            }}
-            p {{
-                font-size: 14px;
-            }}
-        </style>
-    </head>
-    <body>
-        {html_content}
-    </body>
-    </html>
-    """
+    # Create a new PDF document
+    pdf = FPDF()
+    pdf.add_page()
 
-    pdf_options = {
-        'page-size': 'A4',
-        'encoding': 'UTF-8',
-        'margin-top': '10mm',
-        'margin-right': '10mm',
-        'margin-bottom': '10mm',
-        'margin-left': '10mm'
-    }
+    # Set the font and size
+    pdf.set_font("Arial", size=12)
 
-    try:
-        # Generate the PDF and write it to the provided buffer
-        pdfkit.from_string(styled_html, output_path=buffer, options=pdf_options)
-    except Exception as e:
-        print(f"Error creating PDF: {e}")
+    # Split the content into lines
+    lines = content.split("\n")
+
+    # Loop through the lines and add them to the PDF
+    for line in lines:
+        pdf.cell(200, 10, txt=line, ln=1)
+
+    # Write the PDF to the provided buffer
+    pdf.output(buffer)
 
 def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
     zip_buffer = BytesIO()  # Use a BytesIO buffer to create the zip in memory
@@ -344,9 +319,7 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
         
         # Add the summary PDF file
         if os.path.exists(summary_pdf_file):
-            with open(summary_pdf_file, 'rb') as file:
-                summary_pdf_data = file.read()
-            zipf.writestr("summary_statistics.pdf", summary_pdf_data)
+            zipf.write(summary_pdf_file, "summary_statistics.pdf")
             print(f"Added summary_statistics.pdf to zip")
 
     zip_buffer.seek(0)  # Rewind the buffer to the beginning
