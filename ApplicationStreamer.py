@@ -27,7 +27,7 @@ def extract_name_from_response(response_content):
                 Return name without title. For example, return 'Maxwell Singer' not 'Name: Maxwell Singer'"""
 
     response = openai.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-3.5-turbo-0125",
         messages=[
             {
                 "role": "system", "content":  "You are an assistant who extracts data from text.",
@@ -97,7 +97,7 @@ def query_gpt4(text, fields, template=None):
         user_content += f"\n\nUse the following format as a template for all responses:\n{template}"
 
     response = openai.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-3.5-turbo-0125",
         messages=[
             {
                 "role": "system", "content":  "You are an assistant who extracts specified information from text.",
@@ -112,7 +112,7 @@ def query_gpt4(text, fields, template=None):
 def remove_non_ascii(text):
     return re.sub(r'[^\x00-\x7F]+', '', text)
 
-# Function to use GPT-4o to extract specific fields
+# Function to use GPT to extract specific fields
 def extract_fields_with_gpt(response_content, fields):
     field_values = {}
     for field in fields:
@@ -125,7 +125,7 @@ def extract_fields_with_gpt(response_content, fields):
                 Please do not return the field title in your response."""
         try:
             response = openai.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-3.5-turbo-0125",
                 messages=[
                     {
                         "role": "system", "content":  "You are an assistant who extracts data from text.",
@@ -152,7 +152,7 @@ def generate_summary_with_gpt(df):
                          """
     
     response = openai.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-3.5-turbo-0125",
         messages=[
             {
                 "role": "system", "content":  "You are an assistant who creates statistical summary reports of residency applicants from data.",
@@ -367,7 +367,7 @@ def create_pdf(content, filename):
     try:
         # Generate PDF file from the HTML template
         pdfkit.from_string(html_template, filename, options=pdf_options, configuration=config)
-        st.write(f"PDF created successfully: {filename}")  # Log PDF creation success
+        # st.write(f"PDF created successfully: {filename}")  # Log PDF creation success
     except Exception as e:
         st.error(f"Error creating PDF {filename}: {e}")
 
