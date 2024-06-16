@@ -12,9 +12,9 @@ import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 import tempfile
 from io import BytesIO
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import letter
-from reportlab.lib.units import inch
+import PyPDF2
+import reportlab
+
 
 load_dotenv()  # Load environment variables from .env file
 openai.api_key = st.secrets['OPENAI_API_KEY']
