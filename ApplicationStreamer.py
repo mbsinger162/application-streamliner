@@ -67,6 +67,8 @@ def query_gpt4(text, fields, template=None):
     
     user_content = f"""Extract the following information from this text: Name, {fields_to_extract}.
     (always extract name first even if not specified).\n\nText: {text}.
+    Besides for name, only extract fields that are requested. For example, if personal statement is not in one of the fields
+    it should not be extracted.
     When printing the information please be as simple as possible.
     For example for name the output should be 'Name: [name]'
     Bold all titles of extracted information such as 'Name'
@@ -383,9 +385,9 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
             
             # Check if the PDF file was created successfully
             if os.path.exists(pdf_filename):
-                st.write(f"Adding {pdf_filename} to zip")  # Log file addition
+                # st.write(f"Adding {pdf_filename} to zip")  # Log file addition
                 zipf.write(pdf_filename)
-                st.write(f"Added {pdf_filename} to zip")
+                # st.write(f"Added {pdf_filename} to zip")
                 
                 # Clean up the generated PDF file
                 os.remove(pdf_filename)
@@ -395,7 +397,7 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
         # Add the DataFrame CSV file
         if os.path.exists(data_frame_file):
             zipf.write(data_frame_file)
-            st.write(f"Added {data_frame_file} to zip")
+            # st.write(f"Added {data_frame_file} to zip")
         else:
             st.write(f"Data frame file {data_frame_file} does not exist.")
         
@@ -404,7 +406,7 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
             with open(summary_pdf_file, 'rb') as file:
                 summary_pdf_data = file.read()
             zipf.writestr("summary_statistics.pdf", summary_pdf_data)
-            st.write(f"Added summary_statistics.pdf to zip")
+            # st.write(f"Added summary_statistics.pdf to zip")
         else:
             st.write(f"Summary PDF file {summary_pdf_file} does not exist.")
 
