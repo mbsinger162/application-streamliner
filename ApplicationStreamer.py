@@ -85,7 +85,6 @@ def query_gpt4(text, fields, template=None):
     If asked about medical school rankings, use the list from the provided file titled "medical_school_rankings".
     Allow non-perfect close matches from the list. For example, if the medical school is "Pritzker" but the "medical_school_rankings"
     lists "20. University of Chicago (Pritzker)" consider those the same, and the medical school ranking 20.
-    If it is not on the list, say "Unranked".
 
     If asked about college or university rankings, use the list from the provided file titled "college_rankings". If it is not on the list,
     say "Unranked". Allow non-perfect matches from the list as described above for medical schools.
