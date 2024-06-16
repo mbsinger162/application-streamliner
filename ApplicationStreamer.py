@@ -24,7 +24,7 @@ def extract_name_from_response(response_content):
                 Return name without title. For example, return 'Maxwell Singer' not 'Name: Maxwell Singer'"""
 
     response = openai.chat.completions.create(
-        model="gpt-3.5",
+        model="gpt-4o",
         messages=[
             {
                 "role": "system", "content":  "You are an assistant who extracts data from text.",
@@ -92,7 +92,7 @@ def query_gpt4(text, fields, template=None):
         user_content += f"\n\nUse the following format as a template for all responses:\n{template}"
 
     response = openai.chat.completions.create(
-        model="gpt-3.5",
+        model="gpt-4o",
         messages=[
             {
                 "role": "system", "content":  "You are an assistant who extracts specified information from text.",
@@ -120,7 +120,7 @@ def extract_fields_with_gpt(response_content, fields):
                 Please do not return the field title in your response."""
         try:
             response = openai.chat.completions.create(
-                model="gpt-3.5",
+                model="gpt-4o",
                 messages=[
                     {
                         "role": "system", "content":  "You are an assistant who extracts data from text.",
@@ -147,7 +147,7 @@ def generate_summary_with_gpt(df):
                          """
     
     response = openai.chat.completions.create(
-        model="gpt-3.5",
+        model="gpt-4o",
         messages=[
             {
                 "role": "system", "content":  "You are an assistant who creates statistical summary reports of residency applicants from data.",
