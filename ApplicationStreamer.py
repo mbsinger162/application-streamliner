@@ -12,6 +12,9 @@ import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 import tempfile
 from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.units import inch
 
 load_dotenv()  # Load environment variables from .env file
 openai.api_key = st.secrets['OPENAI_API_KEY']
@@ -279,23 +282,29 @@ def create_summary_pdf_with_gpt(df, file_name):
             os.remove(figure_file)
 
 def create_pdf(content, buffer):
+    # Create a BytesIO buffer for the PDF
+    pdf_buffer = BytesIO()
+
     # Create a new PDF document
-    pdf = FPDF()
-    pdf.add_page()
+    c = canvas.Canvas(pdf_buffer, pagesize=letter)
 
     # Set the font and size
-    pdf.set_font("Arial", size=12)
+    c.setFont("Helvetica", 12)
 
     # Split the content into lines
     lines = content.split("\n")
 
+    # Set the initial y-coordinate for drawing the lines
+    y = 750
+
     # Loop through the lines and add them to the PDF
     for line in lines:
-        pdf.cell(200, 10, txt=line, ln=1)
+        c.drawString(50, y, line)
+        y -= 20
 
-    # Write the PDF to the provided buffer
-    pdf_buffer = BytesIO()
-    pdf.output(pdf_buffer)
+    # Save the PDF and write it to the provided buffer
+    c.showPage()
+    c.save()
     pdf_buffer.seek(0)
     buffer.write(pdf_buffer.getvalue())
 
