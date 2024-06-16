@@ -164,19 +164,19 @@ def generate_summary_with_gpt(df):
     return response.choices[0].message.content
 
 # Function to generate and save figures for numeric fields
-def generate_figures(df):
-    figure_files = []
-    for column in df.columns:
-        if df[column].dtype in ['int64', 'float64']:
-            figure_file = f"{sanitize_filename(column)}_distribution.png"
-            plt.figure()
-            df[column].plot(kind='hist', title=f"Distribution of {column}")
-            plt.xlabel(column)
-            plt.ylabel('Frequency')
-            plt.savefig(figure_file)
-            plt.close()
-            figure_files.append(figure_file)
-    return figure_files
+# def generate_figures(df):
+#     figure_files = []
+#     for column in df.columns:
+#         if df[column].dtype in ['int64', 'float64']:
+#             figure_file = f"{sanitize_filename(column)}_distribution.png"
+#             plt.figure()
+#             df[column].plot(kind='hist', title=f"Distribution of {column}")
+#             plt.xlabel(column)
+#             plt.ylabel('Frequency')
+#             plt.savefig(figure_file)
+#             plt.close()
+#             figure_files.append(figure_file)
+#     return figure_files
 
 # Function to create a summary PDF with statistics and figures
 def create_summary_pdf_with_gpt(df, file_name):
@@ -185,13 +185,13 @@ def create_summary_pdf_with_gpt(df, file_name):
     # Convert the Markdown summary text to HTML
     html_content = markdown.markdown(summary_text)
 
-    # Generate figures and add their HTML tags to the content
-    figure_files = generate_figures(df)
-    print(figure_files)
-    figures_html = ""
-    for figure_file in figure_files:
-        figures_html += f'<div style="page-break-after: always;"><img src="{figure_file}" style="width: 100%; margin: 20px 0;" /></div>'
-    print(figures_html)
+    # # Generate figures and add their HTML tags to the content
+    # figure_files = generate_figures(df)
+    # print(figure_files)
+    # figures_html = ""
+    # for figure_file in figure_files:
+    #     figures_html += f'<div style="page-break-after: always;"><img src="{figure_file}" style="width: 100%; margin: 20px 0;" /></div>'
+    # print(figures_html)
 
     # Add inline CSS for better styling
     styled_html = f"""
@@ -243,24 +243,24 @@ def create_summary_pdf_with_gpt(df, file_name):
             tr:nth-child(even) {{
                 background-color: #f9f9f9;
             }}
-            .figure {{
-                page-break-after: always;
-                margin-top: 20px;
-            }}
-            .figure img {{
-                width: 100%;
-                border: 1px solid #ddd;
-                padding: 10px;
-                background-color: #f9f9f9;
-            }}
+            # .figure {{
+            #     page-break-after: always;
+            #     margin-top: 20px;
+            # }}
+            # .figure img {{
+            #     width: 100%;
+            #     border: 1px solid #ddd;
+            #     padding: 10px;
+            #     background-color: #f9f9f9;
+            # }}
         </style>
     </head>
     <body>
         <h1>Summary Statistics Generated</h1>
         {html_content}
-        <div class="figure">
-            {figures_html}
-        </div>
+        # <div class="figure">
+        #     {figures_html}
+        # </div>
     </body>
     </html>
     """
@@ -281,10 +281,10 @@ def create_summary_pdf_with_gpt(df, file_name):
     except Exception as e:
         print(f"Error creating summary PDF: {e}")
 
-    # Clean up the generated figure files after including them in the PDF
-    for figure_file in figure_files:
-        if os.path.exists(figure_file):
-            os.remove(figure_file)
+    # # Clean up the generated figure files after including them in the PDF
+    # for figure_file in figure_files:
+    #     if os.path.exists(figure_file):
+    #         os.remove(figure_file)
 
 
 import pdfkit
