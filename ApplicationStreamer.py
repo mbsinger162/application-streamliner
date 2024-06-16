@@ -489,7 +489,12 @@ if st.button("Process Applications"):
             # Create the DataFrame with simplified column names
             df = pd.DataFrame(data_list, columns=["Name"] + simplified_fields)
 
-            # Save the DataFrame to a CSV file
+            # Convert columns to numeric where applicable
+            for column in df.columns:
+                if column != "Name":  # Skip the "Name" column
+                    df[column] = pd.to_numeric(df[column], errors='ignore')  # Convert columns to numeric if possible
+
+            # Save the DataFrame to an Excel file
             data_frame_file = "applicant_data.xlsx"
             df.to_excel(data_frame_file, index=False, engine='openpyxl')
 
