@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 import tempfile
 from io import BytesIO
 import base64
+import html
 
 
 load_dotenv()  # Load environment variables from .env file
@@ -280,7 +281,11 @@ def create_summary_pdf_with_gpt(df, file_name):
         if os.path.exists(figure_file):
             os.remove(figure_file)
 
+
 def create_pdf(content, buffer):
+    # Escape any special characters in the content
+    escaped_content = html.escape(content)
+
     # Create an HTML template for the PDF content
     html_template = """
     <!DOCTYPE html>
@@ -299,14 +304,20 @@ def create_pdf(content, buffer):
         <pre>{}</pre>
     </body>
     </html>
-    """.format(content)
+    """.format(escaped_content)
 
-    # Convert the HTML content to a base64-encoded data URL
-    pdf_data = base64.b64encode(html_template.encode('utf-8')).decode('utf-8')
-    pdf_data_url = f"data:application/pdf;base64,{pdf_data}"
+    try:
+        # Convert the HTML content to a base64-encoded data URL
+        pdf_data = base64.b64encode(html_template.encode('utf-8')).decode('utf-8')
+        pdf_data_url = f"data:application/pdf;base64,{pdf_data}"
 
-    # Write the data URL to the provided buffer
-    buffer.write(pdf_data_url.encode('utf-8'))
+        # Write the data URL to the provided buffer
+        buffer.write(pdf_data_url.encode('utf-8'))
+    except Exception as e:
+        print(f"Error creating PDF: {e}")
+        # Write an error message to the buffer
+        error_message = "Error creating PDF. Please check the application logs."
+        buffer.write(error_message.encode('utf-8'))
 
 def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
     zip_buffer = BytesIO()  # Use a BytesIO buffer to create the zip in memory
