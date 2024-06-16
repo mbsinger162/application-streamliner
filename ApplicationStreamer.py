@@ -317,7 +317,7 @@ def create_pdf(content, buffer):
 
     try:
         # Generate the PDF and write it to the provided buffer
-        pdfkit.from_string(styled_html, buffer, options=pdf_options)
+        pdfkit.from_string(styled_html, output_path=buffer, options=pdf_options)
     except Exception as e:
         print(f"Error creating PDF: {e}")
 
@@ -331,7 +331,7 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
             pdf_buffer = BytesIO()  # Create a BytesIO buffer for each PDF
             
             # Generate the PDF and write it to the buffer
-            create_pdf(response_content, pdf_buffer)  # Use the updated create_pdf function
+            create_pdf(response_content, pdf_buffer)
             
             # Add the PDF buffer to the ZIP
             zipf.writestr(f"{sanitized_name}.pdf", pdf_buffer.getvalue())
@@ -344,8 +344,10 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
         
         # Add the summary PDF file
         if os.path.exists(summary_pdf_file):
-            zipf.write(summary_pdf_file)
-            print(f"Added {summary_pdf_file} to zip")
+            with open(summary_pdf_file, 'rb') as file:
+                summary_pdf_data = file.read()
+            zipf.writestr("summary_statistics.pdf", summary_pdf_data)
+            print(f"Added summary_statistics.pdf to zip")
 
     zip_buffer.seek(0)  # Rewind the buffer to the beginning
     return zip_buffer.getvalue(), "Applications.zip"
