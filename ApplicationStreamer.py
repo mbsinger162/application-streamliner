@@ -287,9 +287,10 @@ def create_summary_pdf_with_gpt(df, file_name):
 
 import pdfkit
 
+
 def create_pdf(content, filename):
-    # Escape any special characters in the content
-    escaped_content = html.escape(content)
+    # Convert markdown content to HTML
+    html_content = markdown.markdown(content)
 
     # Create an HTML template for the PDF content
     html_template = f"""
@@ -302,11 +303,51 @@ def create_pdf(content, filename):
             body {{
                 font-family: Arial, sans-serif;
                 font-size: 12px;
+                line-height: 1.6;
+                color: #333;
+                padding: 20px;
+            }}
+            h1, h2, h3, h4, h5, h6 {{
+                color: #333;
+                line-height: 1.2;
+            }}
+            pre {{
+                background: #f8f8f8;
+                padding: 10px;
+                border: 1px solid #ccc;
+                overflow: auto;
+            }}
+            blockquote {{
+                border-left: 5px solid #ccc;
+                padding-left: 10px;
+                color: #666;
+                margin: 20px 0;
+            }}
+            table {{
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }}
+            th, td {{
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }}
+            th {{
+                background-color: #f2f2f2;
+                font-weight: bold;
+            }}
+            ul, ol {{
+                margin: 20px 0;
+                padding-left: 20px;
+            }}
+            li {{
+                margin-bottom: 10px;
             }}
         </style>
     </head>
     <body>
-        <pre>{escaped_content}</pre>
+        {html_content}
     </body>
     </html>
     """
@@ -323,7 +364,7 @@ def create_pdf(content, filename):
 
     try:
         # Generate PDF file from the HTML template
-        pdfkit.from_string(html_template, filename, options=pdf_options)
+        pdfkit.from_string(html_template, filename, options=pdf_options, configuration=config)
         st.write(f"PDF created successfully: {filename}")  # Log PDF creation success
     except Exception as e:
         st.error(f"Error creating PDF {filename}: {e}")
