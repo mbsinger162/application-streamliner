@@ -12,8 +12,7 @@ import matplotlib.pyplot as plt
 from dotenv import load_dotenv
 import tempfile
 from io import BytesIO
-import PyPDF2
-import reportlab
+import base64
 
 
 load_dotenv()  # Load environment variables from .env file
@@ -282,31 +281,32 @@ def create_summary_pdf_with_gpt(df, file_name):
             os.remove(figure_file)
 
 def create_pdf(content, buffer):
-    # Create a BytesIO buffer for the PDF
-    pdf_buffer = BytesIO()
+    # Create an HTML template for the PDF content
+    html_template = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Generated PDF</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 12px;
+            }
+        </style>
+    </head>
+    <body>
+        <pre>{}</pre>
+    </body>
+    </html>
+    """.format(content)
 
-    # Create a new PDF document
-    c = canvas.Canvas(pdf_buffer, pagesize=letter)
+    # Convert the HTML content to a base64-encoded data URL
+    pdf_data = base64.b64encode(html_template.encode('utf-8')).decode('utf-8')
+    pdf_data_url = f"data:application/pdf;base64,{pdf_data}"
 
-    # Set the font and size
-    c.setFont("Helvetica", 12)
-
-    # Split the content into lines
-    lines = content.split("\n")
-
-    # Set the initial y-coordinate for drawing the lines
-    y = 750
-
-    # Loop through the lines and add them to the PDF
-    for line in lines:
-        c.drawString(50, y, line)
-        y -= 20
-
-    # Save the PDF and write it to the provided buffer
-    c.showPage()
-    c.save()
-    pdf_buffer.seek(0)
-    buffer.write(pdf_buffer.getvalue())
+    # Write the data URL to the provided buffer
+    buffer.write(pdf_data_url.encode('utf-8'))
 
 def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
     zip_buffer = BytesIO()  # Use a BytesIO buffer to create the zip in memory
@@ -317,7 +317,7 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
             sanitized_name = sanitize_filename(extracted_info)
             pdf_buffer = BytesIO()  # Create a BytesIO buffer for each PDF
             
-            # Generate the PDF and write it to the buffer
+            # Generate the PDF data URL and write it to the buffer
             create_pdf(response_content, pdf_buffer)
             
             # Add the PDF buffer to the ZIP
