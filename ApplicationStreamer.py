@@ -282,11 +282,13 @@ def create_summary_pdf_with_gpt(df, file_name):
             os.remove(figure_file)
 
 
-def create_pdf(content, buffer):
+import pdfkit
+
+def create_pdf(content, filename):
     # Escape any special characters in the content
     escaped_content = html.escape(content)
 
-    # Create an HTML template for the PDF content using an f-string
+    # Create an HTML template for the PDF content
     html_template = f"""
     <!DOCTYPE html>
     <html>
@@ -305,19 +307,22 @@ def create_pdf(content, buffer):
     </body>
     </html>
     """
+    
+    # Define PDF options for pdfkit
+    pdf_options = {
+        'page-size': 'A4',
+        'encoding': 'UTF-8',
+        'margin-top': '10mm',
+        'margin-right': '10mm',
+        'margin-bottom': '10mm',
+        'margin-left': '10mm'
+    }
 
+    # Generate PDF file from the HTML template
     try:
-        # Convert the HTML content to a base64-encoded data URL
-        pdf_data = base64.b64encode(html_template.encode('utf-8')).decode('utf-8')
-        pdf_data_url = f"data:application/pdf;base64,{pdf_data}"
-
-        # Write the data URL to the provided buffer
-        buffer.write(pdf_data_url.encode('utf-8'))
+        pdfkit.from_string(html_template, filename, options=pdf_options)
     except Exception as e:
         print(f"Error creating PDF: {e}")
-        # Write an error message to the buffer
-        error_message = "Error creating PDF. Please check the application logs."
-        buffer.write(error_message.encode('utf-8'))
 
 def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
     zip_buffer = BytesIO()  # Use a BytesIO buffer to create the zip in memory
@@ -326,14 +331,18 @@ def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
         # Create and add PDF files to the ZIP
         for extracted_info, response_content in extracted_infos:
             sanitized_name = sanitize_filename(extracted_info)
-            pdf_buffer = BytesIO()  # Create a BytesIO buffer for each PDF
+            pdf_filename = f"{sanitized_name}.pdf"
             
-            # Generate the PDF data URL and write it to the buffer
-            create_pdf(response_content, pdf_buffer)
+            # Generate the PDF from the response content
+            create_pdf(response_content, pdf_filename)
             
-            # Add the PDF buffer to the ZIP
-            zipf.writestr(f"{sanitized_name}.pdf", pdf_buffer.getvalue())
-            print(f"Added {sanitized_name}.pdf to zip")
+            # Add the PDF file to the ZIP
+            zipf.write(pdf_filename)
+            print(f"Added {pdf_filename} to zip")
+
+            # Clean up the generated PDF file
+            if os.path.exists(pdf_filename):
+                os.remove(pdf_filename)
 
         # Add the DataFrame CSV file
         if os.path.exists(data_frame_file):
