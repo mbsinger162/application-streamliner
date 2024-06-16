@@ -15,6 +15,9 @@ from io import BytesIO
 import base64
 import html
 
+# Path to wkhtmltopdf binary
+path_to_wkhtmltopdf = '/usr/bin/wkhtmltopdf'
+config = pdfkit.configuration(wkhtmltopdf=path_to_wkhtmltopdf)
 
 load_dotenv()  # Load environment variables from .env file
 openai.api_key = st.secrets['OPENAI_API_KEY']
