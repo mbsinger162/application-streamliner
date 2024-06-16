@@ -294,7 +294,10 @@ def create_pdf(content, buffer):
         pdf.cell(200, 10, txt=line, ln=1)
 
     # Write the PDF to the provided buffer
-    pdf.output(buffer)
+    pdf_buffer = BytesIO()
+    pdf.output(pdf_buffer)
+    pdf_buffer.seek(0)
+    buffer.write(pdf_buffer.getvalue())
 
 def create_zip(data_frame_file, summary_pdf_file, extracted_infos):
     zip_buffer = BytesIO()  # Use a BytesIO buffer to create the zip in memory
